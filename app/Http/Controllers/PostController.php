@@ -51,7 +51,8 @@ class PostController extends Controller
            'photo'=>'required',
            'check'=>'required',
         ]);*/
-        return back()->withInput();
+//        return back()->withInput();
+        return back()->with('message', 'Your form has been successfully submitted');
 //        return $request->all();
 //        return 'hello world';
 //        return back()->withInput();
@@ -80,7 +81,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = ['name'=>'Khushal More', 'age'=> 27];
+    return view('posts.show', compact('data'));
     }
 
     /**

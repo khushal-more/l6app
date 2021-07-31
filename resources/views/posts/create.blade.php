@@ -1,53 +1,75 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Create Form</h2>
-    <?php if($errors->any()): ?>
-        <ul>
-            <?php foreach($errors->all() as $error): ?>
-                <li><?php echo $error; ?></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
-    <form action="<?php echo route('posts.store') ?>" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="">
-        @csrf
-        <input type="text" name="title" value="<?php echo old('title') ?>"><br>
-        <?php if($errors->has('title')): ?>
-            <?php foreach ($errors->get('title') as $error): ?>
-                <p><?php echo $error; ?></p>
-            <?php endforeach; ?>
-        <?php endif; ?>
-        <textarea name="content" id="fd" cols="30" rows="10"></textarea><br>
-        <?php if($errors->has('content')): ?>
-            <?php foreach ($errors->get('content') as $error): ?>
-                <p><?php echo $error; ?></p>
-            <?php endforeach; ?>
-        <?php endif; ?>
-        <lable>SCI<input type="checkbox" name="check[]" value="SCI"></lable>
-        <lable>COMM<input type="checkbox" name="check[]" value="COMM"></lable>
-        <lable>ARTS<input type="checkbox" name="check[]" value="ARTS"></lable>
-        <?php if($errors->has('check')): ?>
-            <?php foreach ($errors->get('check') as $error): ?>
-                <p><?php echo $error; ?></p>
-            <?php endforeach; ?>
-        <?php endif; ?>
-        <br>
-        <input type="file" name="photo" id="">
-        <?php if($errors->has('photo')): ?>
-            <?php foreach ($errors->get('photo') as $error): ?>
-                <p><?php echo $error; ?></p>
-            <?php endforeach; ?>
-        <?php endif; ?>
-        <br>
-        <input type="submit" value="Add New Post">
-    </form>
-</body>
-</html>
+@extends('layouts.posts')
+@section('title', 'Create New Post')
+@section('content')
+<form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="">
+    @csrf
+    @method('POST')
+    <input type="text" name="title" value="{{ old('title') }}" placeholder="Title"><br>
+    @error('title')
+        <p>{{$message}}</p>
+    @enderror
+    <input type="password" name="password" value="" placeholder="Password"><br>
+    <input type="password" name="password_confirmation" value="" placeholder="Confirm Password"><br>
+    @if($errors->has('password'))
+        @foreach ($errors->get('password') as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    @endif
+    <textarea name="content" id="fd" cols="30" rows="10"></textarea><br>
+    @if($errors->has('content'))
+        @foreach ($errors->get('content') as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    @endif
+    <lable>SCI<input type="checkbox" name="check[]" value="SCI"></lable>
+    <lable>COMM<input type="checkbox" name="check[]" value="COMM"></lable>
+    <lable>ARTS<input type="checkbox" name="check[]" value="ARTS"></lable>
+    @if($errors->has('check'))
+        @foreach ($errors->get('check') as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    @endif
+    <br>
+    <input type="file" name="photo" id="">
+    @if($errors->has('photo'))
+        @foreach ($errors->get('photo') as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    @endif
+    <br>
+
+    <label for="">Select Start Date: <input type="date" name="start_date" id=""></label>
+    @if($errors->has('start_date'))
+        @foreach ($errors->get('start_date') as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    @endif
+    <br>
+
+    <label for="">Select End Date: <input type="date" name="end_date" id=""></label>
+    @if($errors->has('end_date'))
+        @foreach ($errors->get('end_date') as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    @endif
+    <br>
+
+    <label for="">URL: <input type="url" name="website" id=""></label>
+    @if($errors->has('website'))
+        @foreach ($errors->get('website') as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    @endif
+    <br>
+
+     <label for="">Accept TOS: <input type="checkbox" name="tos" id="" value="1"></label>
+    @if($errors->has('tos'))
+        @foreach ($errors->get('tos') as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    @endif
+    <br>
+    <input type="submit" value="Add New Post">
+</form>
+@endsection

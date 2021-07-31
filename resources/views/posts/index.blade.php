@@ -1,19 +1,21 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h2>Listing data</h2>
+@extends('layouts.posts')
+@section('title', 'List of post')
+@section('navigation')
     <ul>
-        <?php foreach($data as $key => $value){ ?>
-            <li><?php echo $value['name'].' - '.$value['company']; ?></li>
-        <?php } ?>
-
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+        <li>Gallery</li>
     </ul>
-</body>
-</html>
+@endsection
+@section('content')
+@component('components.message', ['title'=>'<span>Component Title</span>'])
+    This is a slot message
+@endcomponent
+<ul>
+    <?php foreach($data as $key => $value){ ?>
+        <li><?php echo $value['name'].' - '.$value['company']; ?></li>
+    <?php } ?>
+
+</ul>
+@endsection

@@ -25,10 +25,27 @@ class StoreBlogPost extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
-            'content'=>'required',
-            'photo'=>'required',
-            'check'=>'required',
+//            'title'=>'required',
+//            'content'=>'required',
+//            'photo'=>'required',
+//            'check'=>'required',
+//            'tos'=>'accepted',
+//            'website'=>'active_url',
+//            'dt'=>'required|date|after:today',
+//            'start_date'=>'required|date|after:today',
+//            'start_date'=>'required|date',
+//            'end_date'=>'required|date|after:start_date',
+//            'end_date'=>'required|date|after_or_equal:start_date',
+
+//            'title'=>'required|alpha',
+//            'title'=>'required|alpha_dash',
+//            'title'=>'required|alpha_num',
+//            'check'=>'required|array',
+//            'title'=>'bail|alpha|required'
+//            'title'=>'bail|alpha|between:2,4',
+//                'tos'=>'boolean',
+//                'password'=>'bail|required|confirmed'
+                'title'=>'email:filter'
         ];
     }
 
@@ -42,7 +59,9 @@ class StoreBlogPost extends FormRequest
     public function attributes()
     {
         return [
-            'photo' =>'Post Logo'
+            'photo' =>'Post Logo',
+            'start_date' =>'start date',
+            'end_date' =>'end date'
         ];
     }
 }

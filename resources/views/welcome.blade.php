@@ -81,9 +81,21 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    {{$data['name']}}<br>
-                    {{$data['company']}}
+                    {{$name}}<br>
+                    {{$company}}
                 </div>
+                {{--Commments section--}}
+                @php
+                    $num = [1,2,3,4,5,6,7,8,9];
+                @endphp
+                @foreach($num as $n)
+                    {{$n}}
+                    @if($loop->iteration % 4 == 0)
+                        <br>
+                    @endif
+                    @php
+                    @endphp
+                @endforeach
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
