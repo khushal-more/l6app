@@ -80,6 +80,7 @@
             @endif
 
             <div class="content">
+                @includeIf('partials.message', ['message'=>'Laravel 6.0'])
                 <div class="title m-b-md">
                     {{$name}}<br>
                     {{$company}}
