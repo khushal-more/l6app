@@ -14,6 +14,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+//        dd(env('APP_URL'));
 //        return $request->path();
 //        return $request->url();
 //        return $request->fullUrl();
@@ -21,6 +22,12 @@ class PostController extends Controller
 //        return $request->is('posts') ? 'accepted':'not';
 //        return $request->method();
 //        return $request->isMethod('GET') ? 'accepted' : 'not';
+
+
+
+
+
+
         $post = new Post();
         $data = $post->data();
         return view('posts.index', compact('data'));
